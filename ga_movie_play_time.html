@@ -40,7 +40,7 @@ function onYouTubePlayerReady(){
 function onytplayerStateChange(newState,PlayerName) {
 	if(newState==1){	// 再生開始
 		if(ReStart[PlayerName]==0){
-			_gaq.push(['_trackEvent', gaCategory, 'moviePlay', PlayerName]);	// 再生イベント送信
+			ga('send', 'event', gaCategory, 'moviePlay', PlayerName);	// 再生イベント送信
 			
 			ViewTime[PlayerName] = 0;
 			ReStart[PlayerName] = 1;
@@ -51,11 +51,11 @@ function onytplayerStateChange(newState,PlayerName) {
 		}
 	}
 	if(newState==0){	// 終了
-		_gaq.push(['_trackEvent', gaCategory, 'movieEnd', PlayerName]);	// 終了イベント送信
+		ga('send','event', gaCategory, 'movieEnd', PlayerName);	// 終了イベント送信
 		
 		if(CountSecTimer){clearInterval( CountSecTimer );}
 		ViewTimeTotal = ViewTime[PlayerName];
-		_gaq.push(['_trackEvent', gaCategory, 'movieViewTime', PlayerName, ViewTimeTotal]);	// 再生時間送信(動画終了時)
+	    ga('send','event', gaCategory, 'movieViewTime', PlayerName, ViewTimeTotal);	// 再生時間送信(動画終了時)
 		
 		ReStart[PlayerName]=0;
 	}
@@ -73,7 +73,7 @@ window.onbeforeunload = function() {
 		
 		if(ViewTime[PlayerName]){
 			ViewTimeTotal = ViewTime[PlayerName];
-			_gaq.push(['_trackEvent', gaCategory, 'ViewTime', PlayerName, ViewTimeTotal]);	// 再生時間送信(ページ離脱時)
+			ga('send', 'event', gaCategory, 'ViewTime', PlayerName, ViewTimeTotal);	// 再生時間送信(ページ離脱時)
 		}
 	}
 }
