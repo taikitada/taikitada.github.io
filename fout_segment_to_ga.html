@@ -2,7 +2,7 @@
 <html>
 <head>
 
-<title>YouTube計測</title>
+<title>Fout Segment計測</title>
 <script type="text/javascript">
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -10,34 +10,9 @@
   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
   ga('create', 'UA-50406767-1', 'taikitada.github.io');
-  var dimensionValue = 'test';
+  var dimensionValue = 'video_test';
   ga('set', 'dimension1', dimensionValue);
   ga('send', 'pageview');
-</script>
-
-<script type="text/javascript">
-(function () {
-  var fn = 'fo' + (+new Date);
-  window[fn] = function (data) {
-    var jsStr = JSON.stringify(data);
-    var jsObject = JSON.parse(jsStr);
-    var segmentList = [];
-    for (var segment in jsObject.segments) {
-        segmentList.push(jsObject.segments[segment].segment_id)
-    }
-    ga('set', 'fout_audience_id', jsObject.audience_id, 'segment_list','"'+segmentList.join('","')+'"']);
-
-    fo.parentNode && fo.parentNode.removeChild(fo);
-    fo = null;
-    delete window[fn];
-  };
-
-  var fo = document.createElement('script');
-  fo.async = true;
-  fo.src = 'http://cnt.fout.jp/segapi/audience?cvid=mHDmdffSCFxfWgmjsQ&callback=' + fn;
-  var s = document.getElementsByTagName('script')[0];
-  s.parentNode.insertBefore(fo, s);
-}());
 </script>
 </head>
 <body>
