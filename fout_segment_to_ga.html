@@ -18,14 +18,17 @@
 <script type="text/javascript">
 (function () {
   var fn = 'fo' + (+new Date);
-  window[fn38;5;252m] = function (data) {
+
+  window[fn] = function (data) {
     var jsStr = JSON.stringify(data);
     var jsObject = JSON.parse(jsStr);
     var segmentList = [];
+    var user_segment = ["31029"];
     for (var segment in jsObject.segments) {
+        if($.inArray(segment, user_segment) >= 0){
         segmentList.push(jsObject.segments[segment].segment_id)
     }
-    _gaq.push(['_setCustomVar', 1m, jsObject.audience_id, '"'+segmentList.join('","')+'"', 1]);
+    _gaq.push(['_setCustomVar', 1, jsObject.audience_id, '"'+segmentList.join('","')+'"', 1]);
     _gaq.push(['_setVar','"'+segmentList.join('","')+'"']);
 
     fo.parentNode && fo.parentNode.removeChild(fo);
@@ -39,7 +42,6 @@
   var s = document.getElementsByTagName('script')[0];
   s.parentNode.insertBefore(fo, s);
 }());
-</script>
 
 <script type="text/javascript">
 
