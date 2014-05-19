@@ -23,10 +23,14 @@
     var jsStr = JSON.stringify(data);
     var jsObject = JSON.parse(jsStr);
     var segmentList = [];
-    var user_segment = ["31029"];
+    var user_segmentList = [];
+    var user_segment = {"31029":"動画0%~25%":,"31560":"動画26%~50%"};
+    for (var i = 0; i < user_segment.length; i++) {
+        user_segmentList.push(user_segment[i]);
+    }
     for (var segment in jsObject.segments) {
-        if($.inArray(jsObject.segments[segment].segment_id, user_segment) >= 0){
-        segmentList.push(jsObject.segments[segment].segment_id)
+        if($.inArray(jsObject.segments[segment].segment_id, user_segmentList) >= 0){
+        segmentList.push(user_segment[jsObject.segments[segment].segment_id]);
         }
     }
     _gaq.push(['_setCustomVar', 1, jsObject.audience_id, '"'+segmentList.join('","')+'"', 1]);
