@@ -18,22 +18,28 @@
 <script type="text/javascript">
 (function () {
   var fn = 'fo' + (+new Date);
-
+  
+  var user_segment = {"31029":"動画0%~25%", "31560":"動画26%~50%"};
+  
   window[fn] = function (data) {
-    var jsStr = JSON.stringify(data);
-    var jsObject = JSON.parse(jsStr);
+    var Str = JSON.stringify(data);
+    var audience_seg = JSON.parse(Str);
+    console.log(audience_seg);
+
     var segmentList = [];
     var user_segmentList = [];
-    var user_segment = {"31029":"動画0%~25%":,"31560":"動画26%~50%"};
-    for (var i = 0; i < user_segment.length; i++) {
-        user_segmentList.push(user_segment[i]);
+
+    for (var i in user_segment) {
+        user_segmentList.push(i);
     }
-    for (var segment in jsObject.segments) {
-        if($.inArray(jsObject.segments[segment].segment_id, user_segmentList) >= 0){
-        segmentList.push(user_segment[jsObject.segments[segment].segment_id]);
+
+    for (var segment in audience_seg.segments) {
+        if($.inArray(audience_seg.segments[segment].segment_id, user_segmentList) >= 0){
+        segmentList.push(user_segment[audience_seg.segments[segment].segment_id]);
         }
     }
-    _gaq.push(['_setCustomVar', 1, jsObject.audience_id, '"'+segmentList.join('","')+'"', 1]);
+
+    _gaq.push(['_setCustomVar', 7, audience_seg.audience_id, segmentList[1], 1]);
     _gaq.push(['_setVar','"'+segmentList.join('","')+'"']);
 
     fo.parentNode && fo.parentNode.removeChild(fo);
@@ -53,7 +59,13 @@
 
   var _gaq = _gaq || [];
   _gaq.push(['_setAccount', 'UA-44125255-1']);
-  _gaq.push(['_setCustomVar', 2, 'member', 'regular', 1]);
+  _gaq.push(['_setMaxCustomVariables',10]); 
+  _gaq.push(['_setCustomVar', 1, 'member', 'regular', 1]);
+  _gaq.push(['_setCustomVar', 2, 'account', '12121', 1]);
+  _gaq.push(['_setCustomVar', 3, 'aaa', 'bbb', 1]);
+  _gaq.push(['_setCustomVar', 4, 'aaaaa', 'bbbccc', 1]);
+  _gaq.push(['_setCustomVar', 5, 'kkk', 'xxx', 1]);
+  _gaq.push(['_setCustomVar', 6, 'mmmm', 'xxx', 1]);
   _gaq.push(['_trackPageview']);
 
   (function() {
