@@ -27,6 +27,7 @@
     for (var segment in jsObject.segments) {
         if($.inArray(segment, user_segment) >= 0){
         segmentList.push(jsObject.segments[segment].segment_id)
+        }
     }
     _gaq.push(['_setCustomVar', 1, jsObject.audience_id, '"'+segmentList.join('","')+'"', 1]);
     _gaq.push(['_setVar','"'+segmentList.join('","')+'"']);
