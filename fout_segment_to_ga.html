@@ -25,7 +25,7 @@
     var segmentList = [];
     var user_segment = ["31029"];
     for (var segment in jsObject.segments) {
-        if($.inArray(segment, user_segment) >= 0){
+        if($.inArray(jsObject.segments[segment].segment_id, user_segment) >= 0){
         segmentList.push(jsObject.segments[segment].segment_id)
         }
     }
