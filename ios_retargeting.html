@@ -43,7 +43,6 @@ function get_query_string()
     return result;
 };
 $(document).ready(function(){
-  alert(get_query_string(location.href));
   query = get_query_string(location.href);
   location.href = decodeURI(query['redirect_url']);
 });
