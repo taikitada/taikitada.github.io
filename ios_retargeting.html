@@ -1,5 +1,6 @@
 <html>
 <head>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script type="text/javascript">
   var _fout_queue = _fout_queue || {}; if (_fout_queue.segment === void 0) _fout_queue.segment = {};
   if (_fout_queue.segment.queue === void 0) _fout_queue.segment.queue = [];
@@ -41,9 +42,11 @@ function get_query_string()
     }
     return result;
 };
-window.load = function () {
+$(document).ready(function(){
   alert(get_query_string(location.href));
-};
+  query = get_query_string(location.href);
+  location.href = decodeURI(query['redirect_url']);
+});
 </script>
 </head>
 <body>
